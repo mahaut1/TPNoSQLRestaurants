@@ -1,0 +1,16 @@
+{
+    "name": "mongodb/mongodb",
+    "description": "bdd",
+    "autoload": {
+        "psr-4": {
+            "Mongodb\\Mongodb\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mahaut Windal",
+            "email": "mwindal@hotmail.com"
+        }
+    ],
+    "require": {}
+}
