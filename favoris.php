@@ -6,7 +6,7 @@ require 'config/database.php';  // Assurez-vous que cette ligne pointe vers votr
 $db = getMongoDB();
 
 // Vérifier si l'utilisateur est connecté
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['_id'])) {
     header('Location: index.php');  // Redirection vers la page de connexion
     exit();
 }
@@ -33,7 +33,7 @@ if (isset($_GET['action'], $_GET['id'])) {
 }
 
 // Récupérer les favoris de l'utilisateur
-$user = $db->users->findOne(['_id' => new MongoDB\BSON\ObjectId($_SESSION['user_id'])]);
+$user = $db->users->findOne(['_id' => new MongoDB\BSON\ObjectId($_SESSION['_id'])]);
 $favorites = $user['favorites'] ?? [];
 $favoriteRestaurants = $db->restaurants->find(['_id' => ['$in' => $favorites]]);
 

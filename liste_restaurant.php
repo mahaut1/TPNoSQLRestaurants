@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'config/database.php';  // Assurez-vous que cette ligne pointe vers votre fichier de configuration de la base de données
+require 'config/database.php';  
 
 // Connexion à MongoDB
 $db = getMongoDB();
@@ -12,11 +12,11 @@ $sortOrder = $_GET['order'] ?? 1;  // Ordre croissant par défaut
 // Cartographie des champs valides pour le tri
 $validSortFields = [
     'name' => 'name',
-    'restaurant_id' => 'restaurant_id',
+    '_id' => 'restaurant_id',
     'insertion_order' => 'insertion_order',
-    'cuisine_type' => 'cuisine_type',
-    'district' => 'district',
-    'zipcode' => 'zipcode'
+    'cuisine_types' => 'cuisine_type',
+    'city' => 'district',
+    'zip_code' => 'zipcode'
 ];
 
 // Valider et appliquer le champ de tri
@@ -39,7 +39,7 @@ $restaurants = $db->restaurants->find([], ['sort' => $sortCriteria]);
         Trier par :
         <select name="sort" onchange="this.form.submit()">
             <option value="name">Nom</option>
-            <option value="restaurant_id">ID Restaurant</option>
+            <option value="_id">ID Restaurant</option>
             <option value="insertion_order">Ordre d'Insertion</option>
             <option value="cuisine_type">Type de Cuisine</option>
             <option value="district">Arrondissement</option>
